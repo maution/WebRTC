@@ -5,7 +5,7 @@
 // Firefox --> mozGetUserMedia
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
-                            || navigator.mozGetUserMedia;
+                            || navigator.mediaDevices.getUserMedia;
 
 // Use constraints to ask for a video-only MediaStream:
 var constraints = {audio: false, video: true};
