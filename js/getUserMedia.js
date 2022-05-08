@@ -10,7 +10,7 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
 // Use constraints to ask for a video-only MediaStream:
 var constraints = {audio: false, video: true};
 
-var video = document.querySelector("video");
+var video = document.querySelector("#VideoPreview");
 
 // Callback to be called in case of success...
 function successCallback(stream) {
@@ -19,12 +19,9 @@ function successCallback(stream) {
   window.stream = stream;
 
   if (window.URL) {
-    // Chrome case: URL.createObjectURL() converts a MediaStream to a blob URL
-    video.src = window.URL.createObjectURL(stream);
-  } else {
-    // Firefox and Opera: the src of the video can be set directly from the stream
-    video.src = stream;
-  }
+    // URL.createObjectURL() is deprecated, used MediaStream to a blob URL
+    video.srcObject = stream;
+  } 
   // We're all set. Let's just play the video out!
   video.play();
 }
