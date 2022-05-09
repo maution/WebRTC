@@ -7,7 +7,7 @@ Learnings from Sun 8th May
 - Many methods got deprecated from the demo on the book
 - Can add a framework to make it look better from start, I choosed bootstrap since I like it and it is easy to use.
 
-Learnings from Sun 9th May
+Learnings from Mon 9th May
 - MediaDevice.getUserMedia only asks for contrains, it is on developer to add the data flow if success and how to handle the error if there is any
 - Used for the first time Promises ".then()" in JS
 - Found it on this doc: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia and https://webrtc.org/getting-started/media-devices
