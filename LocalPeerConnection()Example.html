@@ -13,33 +13,38 @@
 </head>
 
 <body>
-    <h1>Local PeerConnection() example</h1>
+    <div class="container-fluid">
+        <h1>Local PeerConnection() example</h1>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Local video</h5>
-                    <p class="card-text"> </p>
-                    <video id="localVideo" autoplay></video>
-                    <a id="startButton" class="btn btn-primary">Start</a>
-                    <a id="callButton" class="btn btn-success">Call</a>
-                    <a id="hangupButton" class="btn btn-danger">Hang up</a>
+        <div class="row">
+            <div class="col-sm">
+                <div class="card">
+                    <!-- Video On Top -->
+
+                    <video class="card-img-top" id="localVideo" autoplay></video>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Local video</h5>
+
+                        <a id="startButton" class="btn btn-primary">Start</a>
+                        <a id="callButton" class="btn btn-success">Call</a>
+                        <a id="hangupButton" class="btn btn-danger">Hang up</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">'Remote' video</h5>
-                    <p class="card-text"> </p>
-                    <video id="remoteVideo" autoplay></video>
+            <div class="col-sm">
+                <div class="card">
+                    <!-- Video On Top -->
 
+                    <video class="card-img-top" id="remoteVideo" autoplay></video>
+
+                    <div class="card-body">
+                        <h5 class="card-title">'Remote' video</h5>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script src="js/localPeerConnection.js"></script>
 
     <!-- Optional JavaScript -->

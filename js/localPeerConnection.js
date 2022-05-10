@@ -22,7 +22,7 @@ hangupButton.onclick = hangup;
 
 // Utility function for logging information to the JavaScript console
 function log(text) {
-    console.log("At time: " + (performance.now() / 1000).toFixed(3) + " --> "\ +
+    console.log("At time: " + (performance.now() / 1000).toFixed(3) + " --> " +
         text);
 }
 
@@ -32,9 +32,9 @@ function successCallback(stream) {
 
     // Associate the local video element with the retrieved stream
     if (window.URL) {
-        localVideo.src = URL.createObjectURL(stream);
+        localVideo.srcObject = stream;
     } else {
-        localVideo.src = stream;
+        localVideo.srcObject = stream;
     }
 
     localStream = stream;
@@ -49,14 +49,11 @@ function start() {
     log("Requesting local stream");
     // First of all, disable the Start button on the page
     startButton.disabled = true;
-    // Get ready to deal with different browser vendors...
-    navigator.getUserMedia = navigator.getUserMedia ||
-        navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+
     // Now, call getUserMedia()
-    navigator.getUserMedia({ audio: true, video: true }, successCallback,
-        function(error) {
-            log("navigator.getUserMedia error: ", error);
-        });
+    navigator.mediaDevices.getUserMedia({ audio: false, video: true }).then(stream => successCallback(stream)).catch(error => log("MediaDevices.getUserMedia error: ", error));
+
 }
 
 
@@ -72,7 +69,7 @@ function call() {
     // Note that getVideoTracks() and getAudioTracks() are not currently
     // supported in Firefox...
     // ...just use them with Chrome
-    if (navigator.webkitGetUserMedia) {
+    if (navigator.mediaDevices.getUserMedia()) {
         // Log info about video and audio device in use
         if (localStream.getVideoTracks().length > 0) {
             log('Using video device: ' + localStream.getVideoTracks()[0].label);
@@ -82,15 +79,6 @@ function call() {
         }
     }
 
-    // Chrome
-    if (navigator.webkitGetUserMedia) {
-        RTCPeerConnection = webkitRTCPeerConnection;
-        // Firefox
-    } else if (navigator.mozGetUserMedia) {
-        RTCPeerConnection = mozRTCPeerConnection;
-        RTCSessionDescription = mozRTCSessionDescription;
-        RTCIceCandidate = mozRTCIceCandidate;
-    }
     log("RTCPeerConnection object: " + RTCPeerConnection);
 
     // This is an optional configuration string, associated with
@@ -173,10 +161,10 @@ function gotRemoteStream(event) {
     // Associate the remote video element with the retrieved stream
     if (window.URL) {
         // Chrome
-        remoteVideo.src = window.URL.createObjectURL(event.stream);
+        remoteVideo.srcObject = event.stream;
     } else {
         // Firefox
-        remoteVideo.src = event.stream;
+        remoteVideo.srcObject = event.stream;
     }
     log("Received remote stream");
 }
