@@ -23,3 +23,8 @@ navigator.mediaDevices.getUserMedia(constraints)
 - MAC cameras are aceptable... but nothing else
 - played with contraints which we would call requeriments and configurations of Video only this time.
 - MediaStream has methods to return lists of Audio and Video Streamings, this would be useful to build a multiinput arrangement.
+
+Learnings 10th May 
+
+- Too many methods are getting deprecated, need to check the WebRTC API doc after finish following the book
+- Need to check again MediaDevice.getUserMedia since it will not work if not using ssl and https for sec policies
